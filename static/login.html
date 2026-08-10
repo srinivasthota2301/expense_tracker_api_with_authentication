@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Expense Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- LEFT: illustration -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="brand">
+          <span class="brand-mark">◆</span> Ledger
+        </div>
+
+        <p class="eyebrow">STAY IN BALANCE</p>
+        <h1 class="hero-title">Every rupee,<br>accounted for.</h1>
+        <p class="hero-sub">Track spending, spot patterns, and keep your budget upright — even when life tips it over.</p>
+
+        <svg class="illustration" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- ground line -->
+          <line x1="60" y1="370" x2="460" y2="370" stroke="#C9C2B3" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+
+          <!-- ascending bar chart, balanced like a scale -->
+          <g class="bars">
+            <rect class="bar bar-1" x="120" y="300" width="46" height="70" rx="8" fill="#E7DED0"/>
+            <rect class="bar bar-2" x="192" y="250" width="46" height="120" rx="8" fill="#CFE4D8"/>
+            <rect class="bar bar-3" x="264" y="190" width="46" height="180" rx="8" fill="#F2C8A6"/>
+            <rect class="bar bar-4" x="336" y="230" width="46" height="140" rx="8" fill="#1F4A42"/>
+          </g>
+
+          <!-- coin balancing on top of the tallest bar -->
+          <g class="coin" transform="translate(359,150)">
+            <circle r="34" fill="#EF6C35"/>
+            <circle r="34" fill="none" stroke="#1F4A42" stroke-width="3" opacity="0.15"/>
+            <text x="0" y="8" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#FBF7F0">₹</text>
+          </g>
+
+          <!-- orbiting dots -->
+          <circle class="orbit orbit-a" cx="90" cy="130" r="5" fill="#EF6C35"/>
+          <circle class="orbit orbit-b" cx="440" cy="90" r="4" fill="#1F4A42"/>
+          <circle class="orbit orbit-c" cx="440" cy="330" r="6" fill="#CFE4D8"/>
+          <path d="M 400 60 q 20 -18 40 0" stroke="#1F4A42" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- RIGHT: login card -->
+    <section class="form-side">
+      <div class="card">
+
+        <!-- ===== LOGIN PANEL ===== -->
+        <div id="login-panel">
+
+          <h2 class="card-title">Welcome back</h2>
+          <p class="card-sub">Log in to pick up your budget right where you left it.</p>
+
+          <form id="login-form" novalidate>
+
+            <label class="field-label" for="login-username">Username</label>
+            <input class="field" type="text" id="login-username" name="username" autocomplete="username" required>
+
+            <label class="field-label" for="login-password">Password</label>
+            <div class="password-field">
+              <input class="field" type="password" id="login-password" name="password" autocomplete="current-password" required>
+              <button type="button" class="toggle-pw" data-target="login-password" aria-label="Show password">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="row-between">
+              <label class="remember">
+                <input type="checkbox" id="remember">
+                <span>Remember me</span>
+              </label>
+              <a class="link" href="#" id="forgot-link">Forgot password?</a>
+            </div>
+
+            <p class="error-msg" id="login-error" role="alert"></p>
+
+            <button type="submit" class="submit-btn" id="login-submit">Log in</button>
+
+          </form>
+
+          <p class="signup-line">Don't have an account? <a class="link accent" href="#" id="show-register">Create one</a></p>
+
+        </div>
+
+        <!-- ===== REGISTER PANEL ===== -->
+        <div id="register-panel" hidden>
+
+          <h2 class="card-title">Create your account</h2>
+          <p class="card-sub">Set up a login so your expenses stay yours alone.</p>
+
+          <form id="register-form" novalidate>
+
+            <label class="field-label" for="register-username">Username</label>
+            <input class="field" type="text" id="register-username" name="username" autocomplete="username" required>
+
+            <label class="field-label" for="register-email">Email</label>
+            <input class="field" type="email" id="register-email" name="email" autocomplete="email" required>
+
+            <label class="field-label" for="register-password">Password</label>
+            <div class="password-field">
+              <input class="field" type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" required>
+              <button type="button" class="toggle-pw" data-target="register-password" aria-label="Show password">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+
+            <p class="error-msg" id="register-error" role="alert"></p>
+            <p class="success-msg" id="register-success" role="status"></p>
+
+            <button type="submit" class="submit-btn" id="register-submit">Create account</button>
+
+          </form>
+
+          <p class="signup-line">Already have an account? <a class="link accent" href="#" id="show-login">Log in</a></p>
+
+        </div>
+
+        <!-- ===== FORGOT PASSWORD PANEL ===== -->
+        <div id="forgot-panel" hidden>
+
+          <h2 class="card-title">Reset your password</h2>
+          <p class="card-sub">Enter the email on your account and we'll get you a reset link.</p>
+
+          <form id="forgot-form" novalidate>
+
+            <label class="field-label" for="forgot-email">Email</label>
+            <input class="field" type="email" id="forgot-email" name="email" autocomplete="email" required>
+
+            <p class="error-msg" id="forgot-error" role="alert"></p>
+            <p class="success-msg" id="forgot-success" role="status"></p>
+
+            <!-- Dev-mode only: shows the actual reset link since no email
+                 provider is wired up yet. Remove this block once /forgot-password
+                 stops returning the token in its response. -->
+            <div class="dev-note" id="forgot-dev-note" hidden></div>
+
+            <button type="submit" class="submit-btn" id="forgot-submit">Send reset link</button>
+
+          </form>
+
+          <p class="signup-line">
+            <a class="link" href="#" id="show-reset-from-forgot">I already have a reset link</a>
+            &nbsp;·&nbsp;
+            <a class="link accent" href="#" id="show-login-from-forgot">Back to log in</a>
+          </p>
+
+        </div>
+
+        <!-- ===== RESET PASSWORD PANEL ===== -->
+        <div id="reset-panel" hidden>
+
+          <h2 class="card-title">Choose a new password</h2>
+          <p class="card-sub">Paste the token from your reset link and set a new password.</p>
+
+          <form id="reset-form" novalidate>
+
+            <label class="field-label" for="reset-token">Reset token</label>
+            <input class="field" type="text" id="reset-token" name="token" required>
+
+            <label class="field-label" for="reset-password">New password</label>
+            <div class="password-field">
+              <input class="field" type="password" id="reset-password" name="new_password" autocomplete="new-password" minlength="8" required>
+              <button type="button" class="toggle-pw" data-target="reset-password" aria-label="Show password">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+
+            <p class="error-msg" id="reset-error" role="alert"></p>
+            <p class="success-msg" id="reset-success" role="status"></p>
+
+            <button type="submit" class="submit-btn" id="reset-submit">Reset password</button>
+
+          </form>
+
+          <p class="signup-line"><a class="link accent" href="#" id="show-login-from-reset">Back to log in</a></p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
